@@ -1,0 +1,61 @@
+apply plugin: 'com.android.library'
+
+ext {
+    bintrayRepo = 'srpago-maven' //nombre del repo en bintray
+    bintrayName = 'srpago-android' //nombre del paquete en bintray
+
+    publishedGroupId = 'com.srpago.library' //nombre del paquete en android
+    libraryName = 'SrPagoAndroid' //nombre de la libreria
+    artifact = 'srpago-android' //nombre real de la libreria, genera un com.srpago.library:NOMBRE:VERSION
+
+    libraryDescription = 'Es una libreria'
+
+    siteUrl = 'https://github.com/srpago/NOMBRE'
+    gitUrl = 'https://github.com/srpago/NOMBRE.git'
+
+    libraryVersion = '0.1.0'
+
+    developerId = '' //Nombre de la cuenta en bintray
+    developerName = ''
+    developerEmail = ''
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+
+    //Esto generaria => compile 'com.srpago.library:srpago-android:0.1.0'
+}
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.0"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.google.android.gms:play-services-location:10.0.1'
+    testCompile 'junit:junit:4.12'
+}
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
